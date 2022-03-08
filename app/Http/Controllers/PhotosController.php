@@ -12,15 +12,17 @@ class PhotosController extends Controller
     public function viewPhotos()
     {
         $user = Auth::user();
-        $imageData = Photo::all();
-        return view('/photos', compact('imageData'), [
-            'user' => $user
+        $userPhotos = Photo::all();
+
+        return view('/photos', compact('userPhotos'), [
+            'user' => $user,
         ]);
     }
-    //Store image
+
+
     public function storePhoto(Request $request)
     {
-        $request->validate([
+        $this->validate($request, [
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'caption' => 'required|string'
 

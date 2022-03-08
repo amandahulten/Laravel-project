@@ -34,7 +34,4 @@ Route::post('photos', [PhotosController::class, 'storePhoto'])
     ->name('photos.store');
 
 
-
-
-
 //Route::resource('photos', PhotosController::class)->middleware('auth');

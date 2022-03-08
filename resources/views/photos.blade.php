@@ -1,3 +1,7 @@
+<?php
+echo ($user->photos);
+?>
+
 @include ('header')
 @include('errors')
 
@@ -30,16 +34,16 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Image id</th>
+                <th scope="col">Caption</th>
                 <th scope="col">Image</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($imageData as $data)
+            @foreach($userPhotos as $userPhoto)
             <tr>
-                <td>{{$data->id}}</td>
+                <td>{{$userPhoto->caption}}</td>
                 <td>
-                    <img src="{{ url('/uploads/'.$data->photo) }}" style="height: 100px; width: 150px;">
+                    <img src="{{ url('/uploads/'.$userPhoto->photo) }}" style="height: 100px; width: 150px;">
                 </td>
             </tr>
             @endforeach
