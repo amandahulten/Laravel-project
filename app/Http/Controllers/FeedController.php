@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Photo;
 
 class FeedController extends Controller
 {
@@ -16,8 +17,8 @@ class FeedController extends Controller
     public function __invoke()
     {
         $user = Auth::user();
-
-        return view('feed', [
+        $imageData = Photo::all();
+        return view('/feed', compact('imageData'), [
             'user' => $user
         ]);
     }

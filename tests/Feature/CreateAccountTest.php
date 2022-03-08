@@ -21,33 +21,31 @@ class CreateAccountTest extends TestCase
 
     public function test_create_user()
     {
-        $user = new User();
-        $user->name = 'Amanda';
-        $user->email = 'example@email.com';
-        $user->password = Hash::make(123);
-        $user->save();
+        // $user = new User();
+        // $user->name = 'Amanda';
+        // $user->email = 'example@email.com';
+        // $user->password = Hash::make('123');
+        // $user->save();
 
-        $response = $this->followingRedirects($user)->post('login', [
+        $this->post('users', [
             'email' => 'example@email.com',
-            'password' => 123
+            'password' => '123',
+            'name' => 'Amanda'
         ]);
 
-        $response->assertSeeText('Hello, Amanda!');
-        $response->assertOk();
-    }
-
-    public function test_login_user_without_password()
-    {
-        $user = new User();
-        $user->name = 'Amanda';
-        $user->email = 'example@email.com';
-        $user->password = Hash::make(123);
-        $user->save();
-
-        $response = $this->followingRedirects($user)->post('login', [
-            'email' => 'example@email.com'
+        $this->assertDatabaseHas('users', [
+            'email' => 'example@email.com',
+            'password' => '123',
+            'name' => 'Amanda'
         ]);
 
-        $response->assertSeeText('Woops! Please try to login again.');
+        // $response = $this->followingRedirects($user)->post('createuser', [
+        //     'email' => 'example@email.com',
+        //     'password' => '123',
+        //     'name' => 'Amanda'
+        // ]);
+
+        // $response->assertSeeText('Hello, Amanda!');
+        // $response->assertOk();
     }
 }

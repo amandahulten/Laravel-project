@@ -24,17 +24,18 @@ class LoginTest extends TestCase
         $user = new User();
         $user->name = 'Amanda';
         $user->email = 'example@email.com';
-        $user->password = Hash::make(123);
+        $user->password = Hash::make('apassword');
         $user->save();
 
         $response = $this->followingRedirects($user)->post('login', [
             'email' => 'example@email.com',
-            'password' => 123
+            'password' => 'apassword'
         ]);
 
         $response->assertSeeText('Hello, Amanda!');
         $response->assertOk();
     }
+
 
     public function test_login_user_without_password()
     {
