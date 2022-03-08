@@ -20,57 +20,19 @@ class PhotosController extends Controller
     //Store image
     public function storePhoto(Request $request)
     {
-        // $request->validate([
-        //     'photo' => 'required',
-        //     'caption' => 'required'
-        // ]);
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'caption' => 'required|string'
 
-        // $imageName = time();
+        ]);
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('uploads'), $imageName);
 
-        // $photo = new Photo();
-        // $request->photo = $request->input('photo');
-        // $request->photo->move(public_path('/uploads'), $imageName);
-        // $request->caption = $request->input('caption');
-        // $request->user_id = Auth::id();
-        // $request->save();
-        // return back();
-
-
-        // $this->validate($request, [
-        //     'photo' => 'required',
-        //     'caption' => 'required'
-        // ]);
-
-
-
-        // $filename = date('YmdHi') . $request->file('photo');
-        // $photo->move('public/uploads', $filename);
-        // $photo->photo = $filename;
-        // $photo = new Photo();
-
-        // $photo->photo = $request->input('photo');
-        // $photo->caption = $request->input('caption');
-        // $photo->user_id = Auth::id();
-        // $photo->save();
-
-        // return back();
-        // $path = $request->file('photo')->store('uploads');
-        // return $path;
-
-
-        /* Store $imageName name in DATABASE from HERE */
-
-
-        // $data = new Photo();
-
-        // if ($request->file('photo')) {
-        //     $file = $request->file('photo');
-        //     $filename = date('YmdHi') . $file->getClientOriginalName();
-        //     $file->move(public_path('public/uploads'), $filename);
-        //     $data['photo'] = $filename;
-        //     $data->user_id = Auth::id();
-        // }
-        // $data->save();
-        // return redirect()->route('photos.view');
+        $upload = new Photo();
+        $upload->photo = $imageName;
+        $upload->caption = $request->input('caption');
+        $upload->user_id = Auth::id();
+        $upload->save();
+        return back();
     }
 }

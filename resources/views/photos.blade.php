@@ -3,18 +3,26 @@
 
 <p>Hello, {{$user->name}}!</p>
 <h1>Welcome to your photos! </h1>
-<form action="/photos" method="post">
+
+<form action="/photos" method="POST" enctype="multipart/form-data">
     @csrf
-    <div>
-        <label for="photo">Select image to upload: </label>
-        <input type="file" id="photo" name="photo">
+    <div class="col">
+
+        <div class="row-md-6">
+            <input type="file" name="image" class="form-control">
+        </div>
+        <div class="row-md-6">
+            <label for="caption" class="row-md-6">Write your image caption:</label>
+            <textarea name="caption" cols="30" rows="10"></textarea>
+        </div>
+
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-success">Upload</button>
+        </div>
+
     </div>
-    <div>
-        <label for="caption">Write your image caption:</label>
-        <textarea name="caption" id="caption" cols="30" rows="10"></textarea>
-    </div>
-    <input type="submit">
 </form>
+
 
 <div class="container">
     <h3>View all image</h3>
@@ -31,7 +39,7 @@
             <tr>
                 <td>{{$data->id}}</td>
                 <td>
-                    <img src="{{ url('public/Photo/'.$data->photo) }}" style="height: 100px; width: 150px;">
+                    <img src="{{ url('/uploads/'.$data->photo) }}" style="height: 100px; width: 150px;">
                 </td>
             </tr>
             @endforeach
