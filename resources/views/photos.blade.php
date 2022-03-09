@@ -1,5 +1,5 @@
 <?php
-echo ($user->photos);
+
 ?>
 
 @include ('header')
@@ -39,11 +39,11 @@ echo ($user->photos);
             </tr>
         </thead>
         <tbody>
-            @foreach($userPhotos as $userPhoto)
+            @foreach($user->photos as $photo)
             <tr>
-                <td>{{$userPhoto->caption}}</td>
+                <td>{{$photo->caption}}</td>
                 <td>
-                    <img src="{{ url('/uploads/'.$userPhoto->photo) }}" style="height: 100px; width: 150px;">
+                    <img src="{{ url('/uploads/'.$photo->photo) }}" style="height: 100px; width: 150px;">
                 </td>
             </tr>
             @endforeach

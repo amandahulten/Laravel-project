@@ -17,8 +17,9 @@ class FeedController extends Controller
     public function __invoke()
     {
         $user = Auth::user();
-        $imageData = Photo::all();
-        return view('/feed', compact('imageData'), [
+        $allPhotos = Photo::all();
+
+        return view('/feed', compact('allPhotos'), [
             'user' => $user
         ]);
     }

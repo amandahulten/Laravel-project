@@ -12,7 +12,7 @@ class PhotosController extends Controller
     public function viewPhotos()
     {
         $user = Auth::user();
-        $userPhotos = Photo::all();
+        $userPhotos = $user->photos;
 
         return view('/photos', compact('userPhotos'), [
             'user' => $user,
