@@ -15,14 +15,26 @@ class LogoutTest extends TestCase
 
     public function test_view_logout_button()
     {
-        // $response = $this->assertSeeText('Log out');
+
+
+
+        //->assertPathIs('/');
+        // $user = new User();
+        // $user->name = 'Emma';
+        // $user->email = 'hej@email.com';
+        // $user->password = 'test';
+        // $user->save();
+
+        // $response = $this->followingRedirects($user)->post('login', [
+        //     'email' => 'hej@email.com',
+        //     'password' => 'test'
+        // ]);
+
+        // $response->assertSeeText("Log Out");
+
+        // $this->clickLink('Log out');
+        // $this->assertPathIs('/');
 
         // $response->assertOk();
-
-        // $this->browse(function ($browser) {
-        //     $browser->visit('/dashboard')
-        //         ->clickLink('Log Out')
-        //         ->assertPathIs('/');
-        // });
     }
 }

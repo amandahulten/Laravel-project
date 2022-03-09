@@ -13,7 +13,7 @@
             <a class="nav-link" href="<?php if (isset($user)) : ?>
                 /logout">Log out
             <?php else : ?>
-                /logout">Create account
+                /createaccount">Create account
             <?php endif ?>
             </a>
         </li>

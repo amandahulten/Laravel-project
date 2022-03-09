@@ -1,9 +1,13 @@
+@include('header')
 @include('errors')
-<form method="post" action="/createaccount">
+
+<!-- create user form -->
+<form method="POST" action="/createuser">
     @csrf
     <div>
-        <label for="user">Username</label>
-        <input name="user" id="user" type="user" />
+
+        <label for="name">Username</label>
+        <input name="name" id="name" type="name" />
     </div>
     <div>
         <label for="email">Email</label>
@@ -15,3 +19,5 @@
     </div>
     <button type="submit">Create account</button>
 </form>
+
+@include('footer')

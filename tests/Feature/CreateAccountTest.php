@@ -14,30 +14,40 @@ class CreateAccountTest extends TestCase
 
     public function test_view_create_account_form()
     {
-        $response = $this->get('/');
+
+        $response = $this->get('/createaccount');
 
         $response->assertOk();
     }
 
     public function test_create_user()
     {
+
+        $response = $this->followingRedirects()->post('createuser', [
+            'username' => 'emma',
+            'email' => 'hejhejhej@email.com',
+            'password' => 'test',
+        ]);
+        $response->assertStatus(200);
+        $response->assertOk();
+
+
         // $user = new User();
         // $user->name = 'Amanda';
         // $user->email = 'example@email.com';
         // $user->password = Hash::make('123');
         // $user->save();
 
-        $this->post('users', [
-            'email' => 'example@email.com',
-            'password' => '123',
-            'name' => 'Amanda'
-        ]);
+        // $user = $this->post('users', [
 
-        $this->assertDatabaseHas('users', [
-            'email' => 'example@email.com',
-            'password' => '123',
-            'name' => 'Amanda'
-        ]);
+        //     'email' => 'example@email.com',
+        //     'password' => '123',
+        //     'name' => 'Amanda'
+        // ]);
+
+        // $this->followingRedirects($user)->post('login', [
+        //     'email' => 'example@email.com'
+        // ]);
 
         // $response = $this->followingRedirects($user)->post('createuser', [
         //     'email' => 'example@email.com',

@@ -23,10 +23,8 @@ class CreateUserController extends Controller
             'password' => 'required|string'
         ]);
 
-        $user = User::create(request(['name', 'email', 'password']));
+        User::create(request(['name', 'email', 'password']));
 
-        auth()->login($user);
-
-        return redirect()->to('/feed');
+        return redirect()->to('/');
     }
 }
