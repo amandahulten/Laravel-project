@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-custom">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">InstaLite</a>
     <ul class="navbar-nav">
         <li class="nav-item">
