@@ -2,29 +2,44 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
+
 use Database\Factories\UserFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\HasFactory;
+
 
 
 class LogoutTest extends TestCase
 {
     use RefreshDatabase;
-    //use HasFactory;
     public function test_view_logout_button()
     {
-        $user = User::factory()->create();
-        $response = $this->actingAs($user)->post('/logout');
-        $response->assertOk();
 
-        //$this->actingAs($user)->post('feed')->assertOk(); // login
+
+        $user = User::factory()->create();
+
+        // I have checked with Vincent - it is ok that $user is red - it is a fault with the editor. /Emma
+        $this->actingAs($user)
+            ->get('/feed')->assertok()->assertSeeText('Log out');
+
+        //$this->actingAs($test);
+        // $this->followingRedirects()->post('/logout');
+        // $this->assertGuest();
+
+        // $this->actingAs($user)->post('feed')->assertOk(); // login
         // $this->followingRedirects()->post('logout');
         // //$this->post(route('/logout'))->assertRedirect(route('/')); // redirect to login,
         // $this->assertGuest(); // check that your user not auth more
+    }
+
+    public function test_logout_user()
+    {
+        $user = User::factory()->create();
+        // I have checked with Vincent - it is ok that $user is red - it is a fault with the editor. /Emma
+        $this->actingAs($user);
+        $this->followingRedirects($user)->get('logout')->assertok()->assertSeeText('Email'); // redirect to login,
     }
 }
