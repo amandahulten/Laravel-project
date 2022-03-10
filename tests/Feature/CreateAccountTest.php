@@ -23,13 +23,11 @@ class CreateAccountTest extends TestCase
     public function test_create_user()
     {
 
-        $response = $this->followingRedirects()->post('createuser', [
-            'username' => 'emma',
-            'email' => 'hejhejhej@email.com',
+        $this->followingRedirects()->post('/createuser', [
+            'name' => 'emma',
+            'email' => 'hejhejhej@hejmail.nu',
             'password' => 'test',
-        ]);
-        $response->assertStatus(200);
-        $response->assertOk();
+        ])->assertStatus(200)->assertSeeText('Email');
 
 
         // $user = new User();

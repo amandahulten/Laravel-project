@@ -2,39 +2,29 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
+use Database\Factories\UserFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\HasFactory;
 
 
 class LogoutTest extends TestCase
 {
     use RefreshDatabase;
-
+    //use HasFactory;
     public function test_view_logout_button()
     {
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)->post('/logout');
+        $response->assertOk();
 
-
-
-        //->assertPathIs('/');
-        // $user = new User();
-        // $user->name = 'Emma';
-        // $user->email = 'hej@email.com';
-        // $user->password = 'test';
-        // $user->save();
-
-        // $response = $this->followingRedirects($user)->post('login', [
-        //     'email' => 'hej@email.com',
-        //     'password' => 'test'
-        // ]);
-
-        // $response->assertSeeText("Log Out");
-
-        // $this->clickLink('Log out');
-        // $this->assertPathIs('/');
-
-        // $response->assertOk();
+        //$this->actingAs($user)->post('feed')->assertOk(); // login
+        // $this->followingRedirects()->post('logout');
+        // //$this->post(route('/logout'))->assertRedirect(route('/')); // redirect to login,
+        // $this->assertGuest(); // check that your user not auth more
     }
 }

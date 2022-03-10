@@ -15,8 +15,8 @@ class LoginTest extends TestCase
     public function test_view_login_form()
     {
         $response = $this->get('/');
+        $response->assertok();
         $response->assertSeeText('Email');
-        $response->assertStatus(200);
     }
 
     public function test_login_user()
@@ -34,19 +34,6 @@ class LoginTest extends TestCase
 
         $response->assertSeeText("Hello, Emma!");
         $response->assertOk();
-        // $user = new User();
-        // $user->name = 'Emma';
-        // $user->email = 'hej@email.com';
-        // $user->password = 'test';
-        // $user->save();
-
-        // $response = $this->followingRedirects($user)->post('login', [
-        //     'email' => 'hej@email.com',
-        //     'password' => 'test'
-        // ]);
-
-        // $response->assertSeeText("Hello, Emma!");
-        // $response->assertOk();
     }
 
 
@@ -55,7 +42,7 @@ class LoginTest extends TestCase
         $user = new User();
         $user->name = 'Emma';
         $user->email = 'hej@email.com';
-        $user->password = Hash::make(123);
+        $user->password = '123';
         $user->save();
 
         $response = $this->followingRedirects($user)->post('login', [

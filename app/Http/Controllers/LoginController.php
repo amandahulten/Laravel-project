@@ -18,7 +18,7 @@ class LoginController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         if (Auth::attempt($credentials)) {
-            return redirect('feed');
+            return redirect('/feed');
         }
 
         return back()->withErrors('Woops! Please try to login again.');

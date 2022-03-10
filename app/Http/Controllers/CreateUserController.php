@@ -18,8 +18,8 @@ class CreateUserController extends Controller
     public function __invoke(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|string',
-            'email' => 'required|string',
+            'name' => 'required|string|max:20',
+            'email' => 'required|string|email|unique:users',
             'password' => 'required|string'
         ]);
 

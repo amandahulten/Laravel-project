@@ -7,7 +7,7 @@
     </div>
     <!-- login form -->
 
-    <form method=" post" action="/login">
+    <form method="POST" action="login">
         @csrf
         <div class="form-group">
             <label for="email">Email</label>
