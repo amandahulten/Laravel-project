@@ -28,27 +28,27 @@
 </form>
 
 
-<div class="container">
-    <h3>View all image</h3>
-    <hr>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Caption</th>
-                <th scope="col">Image</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($user->photos as $photo)
-            <tr>
-                <td>{{$photo->caption}}</td>
-                <td>
-                    <a href="/viewphoto/{{$photo->id}}"><img src="{{ url('/uploads/'.$photo->photo) }}" style="height: 100px; width: 150px;"></a>
-                </td>
 
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+<section class="post-list">
+    @foreach($user->photos as $photo)
+
+    <!-- <div class="container">
+    <div class="gallery"><a href="/viewphoto/{{$photo->id}}"><img src="{{ url('/uploads/'.$photo->photo) }}" style="height: 100px; width: 150px;"></a></div>
 </div>
+<div>{{$photo->caption}}</div>
+</div> -->
+
+    <a href="/viewphoto/{{$photo->id}}" class="post">
+        <figure class="post-image">
+            <img src="{{ url('/uploads/'.$photo->photo) }}">
+        </figure>
+        <span class="post-overlay">
+            <p>
+                {{$photo->caption}}
+            </p>
+        </span>
+    </a>
+
+    @endforeach
+</section>
 @include ('footer')

@@ -17,7 +17,7 @@ class FeedController extends Controller
     public function __invoke()
     {
         $user = Auth::user();
-        $allPhotos = Photo::all();
+        $allPhotos = Photo::all()->sortByDesc('created_at');
 
         return view('/feed', compact('allPhotos'), [
             'user' => $user

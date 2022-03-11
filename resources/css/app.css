@@ -1,7 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script&family=Satisfy&display=swap');
+
 body{
-    background-color: rgb(180, 130, 238);
+    background-color: rgb(236, 236, 236);
 }
 
 nav{
 
 }
+.navbar-brand{
+    font-family: 'Oleo Script';
+    /*font-family: 'Satisfy'; */
+    font-size: 2rem;
+}
+.container {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2.8fr;
+    grid-auto-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-areas:
+      ".";
+    width: 500px;
+    height: 500px;
+  }
+
+  .photo {  display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 2.7fr 0.5fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-areas:
+      "."
+      "photo-caption";
+    justify-self: center;
+    align-self: center;
+    width: 50%;
+    height: 50%;
+  }
+
+  .photo-caption { grid-area: photo-caption; }
+
+  body {
+    margin: 0;
+    font-family: Arial;
+  }
+  .post-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 293px));
+    justify-content: center;
+    grid-gap: 28px;
+  }
+  .post {
+    cursor: pointer;
+    position: relative;
+    display: block;
+  }
+  .post-image {
+    margin: 0;
+  }
+  .post-image img {
+    width: 100%;
+    vertical-align: top;
+  }
+  .post-overlay {
+    background: rgba(0,0,0, .4);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+  }
+  .post:hover .post-overlay{
+              display: flex;
+  }
+
+  .post-like,
+  .post-comments {
+    width: 80px;
+    margin: 5px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+  }
+
+  @media screen and (max-width: 768px) {
+    .post-list {
+      grid-gap: 3px;
+    }
+  }
+
+
