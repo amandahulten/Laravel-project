@@ -43,7 +43,7 @@
             <tr>
                 <td>{{$photo->caption}}</td>
                 <td>
-                    <img src="{{ url('/uploads/'.$photo->photo) }}" style="height: 100px; width: 150px;">
+                    <a href="/viewphoto/{{$photo->id}}"><img src="{{ url('/uploads/'.$photo->photo) }}" style="height: 100px; width: 150px;"></a>
                     <form action="{{route('delete')}}" method="post">
                         @csrf
                         @method('DELETE')

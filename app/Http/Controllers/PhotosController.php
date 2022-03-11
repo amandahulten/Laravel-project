@@ -52,4 +52,14 @@ class PhotosController extends Controller
 
         return back()->with("success", "Image deleted successfully.");
     }
+
+    public function viewSinglePhoto(Request $request)
+    {
+        $user = Auth::user();
+        $image = Photo::find($request->id);
+
+        return view('viewphoto', ['photo' => $image], [
+            'user' => $user,
+        ]);
+    }
 }
