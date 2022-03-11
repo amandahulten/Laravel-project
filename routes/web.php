@@ -32,4 +32,5 @@ Route::post('createuser', CreateUserController::class);
 Route::get('photos', [PhotosController::class, 'viewPhotos'])->middleware('auth');
 Route::post('photos', [PhotosController::class, 'storePhoto'])
     ->name('photos.store');
+Route::delete("delete", [PhotosController::class, "deleteImage"])->name("delete");
 //Route::get('viewphoto', ViewPhotoController::class)->middleware('auth');

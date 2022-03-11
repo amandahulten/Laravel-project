@@ -38,4 +38,18 @@ class PhotosController extends Controller
         $upload->save();
         return back();
     }
+
+    //delete image
+
+    public function deleteImage(Request $request)
+    {
+
+        $image = Photo::find($request->id);
+
+        unlink("uploads/" . $image->photo);
+
+        Photo::where("id", $image->id)->delete();
+
+        return back()->with("success", "Image deleted successfully.");
+    }
 }
