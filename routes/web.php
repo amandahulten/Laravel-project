@@ -6,6 +6,7 @@ use App\Http\Controllers\FeedController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PhotosController;
+use App\Http\Controllers\ViewPhotoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +32,4 @@ Route::post('createuser', CreateUserController::class);
 Route::get('photos', [PhotosController::class, 'viewPhotos'])->middleware('auth');
 Route::post('photos', [PhotosController::class, 'storePhoto'])
     ->name('photos.store');
+//Route::get('viewphoto', ViewPhotoController::class)->middleware('auth');

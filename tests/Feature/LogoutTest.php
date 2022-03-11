@@ -3,38 +3,43 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+
+use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 
+
 class LogoutTest extends TestCase
 {
     use RefreshDatabase;
-
     public function test_view_logout_button()
     {
 
 
+        $user = User::factory()->create();
 
-        //->assertPathIs('/');
-        // $user = new User();
-        // $user->name = 'Emma';
-        // $user->email = 'hej@email.com';
-        // $user->password = 'test';
-        // $user->save();
+        // I have checked with Vincent - it is ok that $user is red - it is a fault with the editor. /Emma
+        $this->actingAs($user)
+            ->get('/feed')->assertok()->assertSeeText('Log out');
 
-        // $response = $this->followingRedirects($user)->post('login', [
-        //     'email' => 'hej@email.com',
-        //     'password' => 'test'
-        // ]);
+        //$this->actingAs($test);
+        // $this->followingRedirects()->post('/logout');
+        // $this->assertGuest();
 
-        // $response->assertSeeText("Log Out");
+        // $this->actingAs($user)->post('feed')->assertOk(); // login
+        // $this->followingRedirects()->post('logout');
+        // //$this->post(route('/logout'))->assertRedirect(route('/')); // redirect to login,
+        // $this->assertGuest(); // check that your user not auth more
+    }
 
-        // $this->clickLink('Log out');
-        // $this->assertPathIs('/');
-
-        // $response->assertOk();
+    public function test_logout_user()
+    {
+        $user = User::factory()->create();
+        // I have checked with Vincent - it is ok that $user is red - it is a fault with the editor. /Emma
+        $this->actingAs($user);
+        $this->followingRedirects($user)->get('logout')->assertok()->assertSeeText('Email'); // redirect to login,
     }
 }

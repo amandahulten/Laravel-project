@@ -27,9 +27,10 @@ class PhotosController extends Controller
             'caption' => 'required|string'
 
         ]);
+        //rename and store photo:
         $imageName = time() . '.' . $request->image->extension();
         $request->image->move(public_path('uploads'), $imageName);
-
+        //store photo info in the database:
         $upload = new Photo();
         $upload->photo = $imageName;
         $upload->caption = $request->input('caption');
