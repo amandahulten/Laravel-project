@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class viewPhotoController extends Controller
+class ViewPhotoController extends Controller
 {
     /**
      * Handle the incoming request.
