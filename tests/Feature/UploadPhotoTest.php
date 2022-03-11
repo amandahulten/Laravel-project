@@ -46,13 +46,13 @@ class UploadPhotoTest extends TestCase
 
     public function test_upload_photo_without_a_caption()
     {
-
+        //not working T_T
         $user = User::factory()->create();
         $this->actingAs($user);
         //$this->withoutExceptionHandling();
         $this->followingRedirects()->post('/photos', [
             'image' => UploadedFile::fake()->image('photo.jpg'),
-        ])->assertSee('caption');
+        ])->assertSeeText('The caption field is required.');
 
         //('caption', 'The caption field is required.');
 

@@ -17,6 +17,7 @@ class DeletePhotoTest extends TestCase
     {
 
         // TO DO!!
+        //assertDatabaseMissing()
 
         $response = $this->get('/');
 
