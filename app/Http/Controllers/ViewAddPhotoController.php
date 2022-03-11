@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class ViewPhotoController extends Controller
+class ViewAddPhotoController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -12,9 +13,11 @@ class ViewPhotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke()
     {
-        $photoId = 0;
-        return view('/viewphoto/?=' . $photoId);
+        $user = Auth::user();
+        return view('addphoto', [
+            'user' => $user,
+        ]);
     }
 }

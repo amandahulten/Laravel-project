@@ -23,8 +23,9 @@ class PhotosController extends Controller
 
     public function storePhoto(Request $request)
     {
+        $user = Auth::user();
         $this->validate($request, [
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:9048',
             'caption' => 'required|string'
 
         ]);
@@ -32,12 +33,15 @@ class PhotosController extends Controller
         $imageName = time() . '.' . $request->image->extension();
         $request->image->move(public_path('uploads'), $imageName);
         //store photo info in the database:
-        $upload = new Photo();
-        $upload->photo = $imageName;
-        $upload->caption = $request->input('caption');
-        $upload->user_id = Auth::id();
-        $upload->save();
-        return back();
+        $database = new Photo();
+        $database->photo = $imageName;
+        $database->caption = $request->input('caption');
+        $database->user_id = Auth::id();
+        $database->save();
+        $userPhotos = $user->photos;
+        return view('/photos', compact('userPhotos'), [
+            'user' => $user,
+        ]);
     }
 
     //delete image

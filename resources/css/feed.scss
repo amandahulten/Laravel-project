@@ -1,3 +1,4 @@
+@import '~bootstrap-icons/font/bootstrap-icons';
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
 
@@ -23,7 +24,7 @@ body{
   width: 800px;
   max-width: 95%;
   font-family: 'Cabin', sans-serif;
-  section{
+  .feed{
     background: #ffffff;
     position: relative;
     border-radius: 2px;

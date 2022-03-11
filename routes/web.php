@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ViewAddPhotoController;
 use App\Http\Controllers\UserFormController;
 use App\Http\Controllers\CreateUserController;
 use App\Http\Controllers\FeedController;
@@ -34,3 +35,4 @@ Route::post('photos', [PhotosController::class, 'storePhoto'])
     ->name('photos.store');
 Route::delete("delete", [PhotosController::class, "deleteImage"])->name("delete");
 Route::get('viewphoto/{id}', [PhotosController::class, 'viewSinglePhoto'])->middleware('auth');
+Route::get('addphoto', ViewAddPhotocontroller::class)->middleware('auth');
