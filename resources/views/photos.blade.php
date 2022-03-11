@@ -44,12 +44,6 @@
                 <td>{{$photo->caption}}</td>
                 <td>
                     <a href="/viewphoto/{{$photo->id}}"><img src="{{ url('/uploads/'.$photo->photo) }}" style="height: 100px; width: 150px;"></a>
-                    <form action="{{route('delete')}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <input type="hidden" name="id" value="{{$photo->id}}" />
-                        <button type="submit" class="btn btn-sm btn-danger ml-2">Delete</button>
-                    </form>
                 </td>
 
             </tr>

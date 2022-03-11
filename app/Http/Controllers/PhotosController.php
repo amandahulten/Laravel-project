@@ -58,8 +58,16 @@ class PhotosController extends Controller
         $user = Auth::user();
         $image = Photo::find($request->id);
 
-        return view('viewphoto', ['photo' => $image], [
-            'user' => $user,
-        ]);
+        if (empty($image->user_id) || $image->user_id != $user->id) {
+            $userPhotos = $user->photos;
+
+            return view('/photos', compact('userPhotos'), [
+                'user' => $user,
+            ]);
+        } else {
+            return view('viewphoto', ['photo' => $image], [
+                'user' => $user,
+            ]);
+        }
     }
 }
