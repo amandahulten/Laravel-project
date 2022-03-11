@@ -30,7 +30,7 @@ class PhotosController extends Controller
 
         ]);
         //rename and store photo:
-        $imageName = time() . '.' . $request->image->extension();
+        $imageName = $user->name . time() . '.' . $request->image->extension();
         $request->image->move(public_path('uploads'), $imageName);
         //store photo info in the database:
         $database = new Photo();

@@ -32,7 +32,7 @@ class LoginTest extends TestCase
             'password' => 'test',
         ]);
 
-        $response->assertSeeText("Hello, Emma!");
+        $response->assertSeeText("Logged in as:");
         $response->assertOk();
     }
 
@@ -42,7 +42,7 @@ class LoginTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->followingRedirects($user)->post('login', [
-            'email' => 'example@email.com'
+            'email' => $user->email,
         ]);
 
         $response->assertSeeText('Woops! Please try to login again.');
@@ -50,10 +50,10 @@ class LoginTest extends TestCase
 
     public function test_login_user_without_email()
     {
-        $user = User::factory()->create();
 
+        $user = User::factory()->create();
         $response = $this->followingRedirects($user)->post('login', [
-            'password' => 'apassword123'
+            'password' => $user->password
         ]);
 
         $response->assertSeeText('Woops! Please try to login again.');
