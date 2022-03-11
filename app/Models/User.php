@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class User extends Authenticatable
 {
     use HasApiTokens;
-    use  HasFactory;
+    use HasFactory;
     use Notifiable;
 
     /**
