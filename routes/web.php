@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\ViewAddPhotoController;
 use App\Http\Controllers\UserFormController;
 use App\Http\Controllers\CreateUserController;
@@ -33,6 +34,7 @@ Route::post('createuser', CreateUserController::class);
 Route::get('photos', [PhotosController::class, 'viewPhotos'])->middleware('auth');
 Route::post('photos', [PhotosController::class, 'storePhoto'])
     ->name('photos.store');
-Route::delete("delete", [PhotosController::class, "deleteImage"])->name("delete");
+Route::delete('delete', [PhotosController::class, 'deleteImage'])->name('delete');
 Route::get('viewphoto/{id}', [PhotosController::class, 'viewSinglePhoto'])->middleware('auth');
 Route::get('addphoto', ViewAddPhotocontroller::class)->middleware('auth');
+Route::post('addcomment', [CommentsController::class, 'addComment'])->name('addComment');

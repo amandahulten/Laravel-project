@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\Photo;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,16 +13,11 @@ class PhotosController extends Controller
     public function viewPhotos()
     {
         $user = Auth::user();
-        $time = Carbon::now();
         $userPhotos = $user->photos;
-        return view('/photos', compact('userPhotos', 'time'), [
-            'user' => $user
-        ]);
 
-        // $to = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $this->created_at(Photo::class));
-        // $from = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', Carbon::now());
-        // $diff_in_hours = $to->diffInHours($from);
-        // return $diff_in_hours;
+        return view('/photos', compact('userPhotos', 'photoComments'), [
+            'user' => $user,
+        ]);
     }
 
 
@@ -34,7 +29,7 @@ class PhotosController extends Controller
         $user = Auth::user();
         $this->validate($request, [
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2000',
-            'caption' => 'required|string'
+            'caption' => 'required|string|max:200'
 
         ]);
         //rename and store photo:
@@ -70,7 +65,6 @@ class PhotosController extends Controller
     {
         $user = Auth::user();
         $image = Photo::find($request->id);
-        $time = Carbon::now();
 
         //if statement to prevent user from manipulating the URL to view a photo ID that
         //does not exist or belong to the user. User will then be redirected back to their
@@ -78,7 +72,7 @@ class PhotosController extends Controller
         if (empty($image->user_id) || $image->user_id != $user->id) {
             $userPhotos = $user->photos;
 
-            return view('/photos', compact('userPhotos', 'time'), [
+            return view('/photos', compact('userPhotos'), [
                 'user' => $user,
             ]);
         } else {

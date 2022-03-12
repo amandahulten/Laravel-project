@@ -1,9 +1,9 @@
 @include ('header')
-
 @foreach($allPhotos as $photos)
+
 <section class="feed">
     <div class="header">
-        <div class="user">{{$photos->name}}</div>
+        <div class="user">{{$user->name}}</div>
         <div class="param">
             <svg aria-label="Plus options" class="_8-yf5 " fill="#262626" height="16" role="img" viewBox="0 0 48 48" width="16">
                 <circle clip-rule="evenodd" cx="8" cy="24" fill-rule="evenodd" r="4.5"></circle>
@@ -38,7 +38,27 @@
         </a>
     </div>
     <div class="description">{{$photos->caption}}</div>
-    <div class="description" style="color: grey"><small>{{ $photos->hoursAgo(); }} hours ago</small></div>
+    <div class="description" style="color: grey"><small>{{ $photos->hoursAgo() }} hours ago</small></div>
+
+    <div style="border-style: solid; border-width: 1px; border-bottom: 0; border-right: 0; border-left: 0; border-color: lightgrey;">
+        <form action="{{route('addComment')}}" method="POST">
+            @csrf
+            <div class="input-group mb-3" style="margin-left: 1px;">
+                <input type="hidden" name="photo_id" required value="{{$photos->id}}" />
+                <input style="border: 0;" name="comment" required type="text" class="form-control" placeholder="Add a comment..." aria-label="Add a comment" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button style="border: 0; color: lightblue;" class=" btn" type="submit">Post</button>
+                </div>
+            </div>
+        </form>
+        @if(!count($photos->comments) <= 0) <p>comments:</p>
+            @foreach($photos->comments as $comment)
+            <p>{{ $comment->comment }}</p>
+            <p>{{ $comment->created_at }}</p>
+            @endforeach
+            @endif
+    </div>
+    </div>
 </section>
 
 @endforeach

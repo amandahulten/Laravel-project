@@ -11,6 +11,11 @@ class Photo extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'caption',
+        'photo',
+    ];
+
     public function photos()
     {
         return $this->hasMany(Photo::class);
@@ -19,9 +24,14 @@ class Photo extends Model
     public function hoursAgo()
     {
         $photoDate = $this->created_at;
-        $from = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', Carbon::now());
-        $to = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $photoDate);
+        $from = Carbon::createFromFormat('Y-m-d H:s:i', Carbon::now());
+        $to = Carbon::createFromFormat('Y-m-d H:s:i', $photoDate);
         $hoursDifference = $to->diffInHours($from);
         return $hoursDifference;
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

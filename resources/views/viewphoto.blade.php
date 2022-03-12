@@ -5,7 +5,7 @@
     <div class="header">
         <div class="user">{{$user->name}}</div>
         <div class="param">
-            <form action="{{route('delete')}}" method="post">
+            <form action="{{route('delete')}}" method="POST">
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="id" value="{{$photo->id}}" />

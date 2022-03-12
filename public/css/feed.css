@@ -6862,3 +6862,10 @@ body .feed .description strong {
     transform: scale(1);
   }
 }
+input:focus {
+  outline: none !important;
+}
+
+textarea:focus {
+  outline: none !important;
+}
