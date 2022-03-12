@@ -23,14 +23,17 @@ class PhotosController extends Controller
 
     public function storePhoto(Request $request)
     {
+        //note: php.ini only allows for a maximum file size of 2MB.
+        //I set the max file size in the validation to the same size
+        //to avoid bugs while running locally. /Emma
         $user = Auth::user();
         $this->validate($request, [
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:9048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2000',
             'caption' => 'required|string'
 
         ]);
         //rename and store photo:
-        $imageName = time() . '.' . $request->image->extension();
+        $imageName = $user->name . time() . '.' . $request->image->extension();
         $request->image->move(public_path('uploads'), $imageName);
         //store photo info in the database:
         $database = new Photo();

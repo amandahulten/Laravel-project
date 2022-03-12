@@ -28,6 +28,10 @@ class CreateAccountTest extends TestCase
             'email' => 'hejhejhej@hejmail.nu',
             'password' => 'test',
         ])->assertOk()->assertSeeText('Email');
+
+        $this->assertDatabaseHas('users', [
+            'email' => 'hejhejhej@hejmail.nu',
+        ]);
     }
 
     public function test_create_user_without_username()
@@ -36,6 +40,9 @@ class CreateAccountTest extends TestCase
             'email' => 'hejhejhej@hejmail.nu',
             'password' => 'test',
         ])->assertOk()->assertSeeText('The name field is required.');
+        $this->assertDatabaseMissing('users', [
+            'email' => 'hejhejhej@hejmail.nu',
+        ]);
     }
 
     public function test_create_user_without_email()
@@ -52,6 +59,9 @@ class CreateAccountTest extends TestCase
             'name' => 'emma',
             'email' => 'hejhejhej@hejmail.nu',
         ])->assertOk()->assertSeeText('The password field is required.');
+        $this->assertDatabaseMissing('users', [
+            'email' => 'hejhejhej@hejmail.nu',
+        ]);
     }
 
     public function test_create_user_with_existing_email()
@@ -62,5 +72,8 @@ class CreateAccountTest extends TestCase
             'email' => $user->email,
             'password' => 'test',
         ])->assertOk()->assertSeeText('The email has already been taken.');
+        $this->assertDatabaseMissing('users', [
+            'email' => 'hejhejhej@hejmail.nu',
+        ]);
     }
 }
