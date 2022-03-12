@@ -38,6 +38,7 @@
         </a>
     </div>
     <div class="description">{{$photos->caption}}</div>
+    <div class="description" style="color: grey"><small>{{ $photos->hoursAgo(); }} hours ago</small></div>
 </section>
 
 @endforeach
