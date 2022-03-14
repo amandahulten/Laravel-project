@@ -15,7 +15,7 @@ class PhotosController extends Controller
         $user = Auth::user();
         $userPhotos = $user->photos;
 
-        return view('/photos', compact('userPhotos',), [
+        return view('/photos', compact('userPhotos'), [
             'user' => $user,
         ]);
     }

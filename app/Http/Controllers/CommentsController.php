@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
-
     public function addComment(Request $request)
     {
         $this->validate($request, [
