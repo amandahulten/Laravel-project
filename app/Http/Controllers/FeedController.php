@@ -18,12 +18,12 @@ class FeedController extends Controller
     public function __invoke()
     {
         $user = Auth::user();
-        $allComments = Comment::all(); //->sortByDesc('created_at');
-        $allPhotos = Photo::all()->sortByDesc('created_at');
+        $comments = Comment::all();
+        $allPhotos = Photo::photoFeedWithLikes();
 
-        return view('/feed', compact('allPhotos', 'allComments'), [
+        return view('/feed', compact('allPhotos', 'comments'), [
             'user' => $user,
-            'comments' => $allComments,
+            'comments' => $comments,
         ]);
     }
 }
