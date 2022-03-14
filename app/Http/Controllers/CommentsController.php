@@ -23,6 +23,6 @@ class CommentsController extends Controller
         $database->photo_id = $request->input('photo_id');
         $database->save();
 
-        return back();
+        return back()->with('success', 'Comment added successfully.');
     }
 }

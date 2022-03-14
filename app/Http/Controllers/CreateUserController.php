@@ -20,11 +20,11 @@ class CreateUserController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:20|regex:/^[A-Za-z]+$/',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string'
+            'password' => 'required|string|min:8'
         ]);
 
         User::create(request(['name', 'email', 'password']));
 
-        return redirect()->to('/');
+        return redirect()->to('/')->with('success', 'Account created. Please log in.');
     }
 }

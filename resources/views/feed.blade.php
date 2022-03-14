@@ -1,4 +1,6 @@
 @include ('header')
+@include('validations')
+
 @foreach($allPhotos as $photo)
 
 <section class="feed">

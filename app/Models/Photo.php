@@ -42,12 +42,12 @@ class Photo extends Model
         //returns all photos in the database plus flags if the user that is logged in has liked the photo.
 
         return Photo::join('users', 'users.id', '=', 'photos.user_id')
-            ->leftJoin("likes", function ($join) {
-                $join->on("likes.photo_id", "=", "photos.id")
-                    ->where("users.id", "=", Auth::user()->id);
+            ->leftJoin('likes', function ($join) {
+                $join->on('likes.photo_id', '=', 'photos.id')
+                    ->where('users.id', '=', Auth::user()->id);
             })
-            ->select("photos.id as photo_id", "photos.photo", "photos.caption", "photos.created_at", "photos.user_id", "users.name", "likes.user_id as liked")
-            ->orderBy("created_at", "desc")
+            ->select('photos.id as photo_id', 'photos.photo', 'photos.caption', 'photos.created_at', 'photos.user_id', 'users.name', 'likes.user_id as liked')
+            ->orderBy('created_at', 'desc')
             ->get();
     }
 }

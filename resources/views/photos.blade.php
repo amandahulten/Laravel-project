@@ -1,6 +1,5 @@
 @include ('header')
-@include('errors')
-
+@include('validations')
 
 <section class="post-list">
     @foreach($user->photos->reverse() as $photo)
