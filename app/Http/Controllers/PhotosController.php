@@ -6,6 +6,7 @@ use App\Models\Photo;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class PhotosController extends Controller
 {
