@@ -16,7 +16,7 @@ class PhotosController extends Controller
         $user = Auth::user();
         $userPhotos = $user->photos;
 
-        return view('/photos', compact('userPhotos',), [
+        return view('/photos', compact('userPhotos'), [
             'user' => $user,
         ]);
     }
@@ -42,10 +42,7 @@ class PhotosController extends Controller
         $database->caption = $request->input('caption');
         $database->user_id = Auth::id();
         $database->save();
-        $userPhotos = $user->photos;
-        return view('/photos', compact('userPhotos'), [
-            'user' => $user,
-        ]);
+        return back()->with('success', 'Image uploaded successfully.');
     }
 
     //delete image
@@ -55,11 +52,11 @@ class PhotosController extends Controller
 
         $image = Photo::find($request->id);
 
-        unlink("uploads/" . $image->photo);
+        unlink('uploads/' . $image->photo);
 
-        Photo::where("id", $image->id)->delete();
+        Photo::where('id', $image->id)->delete();
 
-        return back()->with("success", "Image deleted successfully.");
+        return back()->with('success', 'Image deleted successfully.');
     }
 
     public function viewSinglePhoto(Request $request)
@@ -77,8 +74,14 @@ class PhotosController extends Controller
                 'user' => $user,
             ]);
         } else {
-            return view('viewphoto', ['photo' => $image], [
+            $comments = Comment::whereIn('photo_id', [$request->id]);
+            // return view('viewphoto', ['photo' => $image], ['user' => $user], ['comments' => $comments]);
+            //dd($photo);
+
+            return view('viewphoto', compact('image', 'comments'), [
                 'user' => $user,
+                'photo' => $image,
+                'comments' => $comments,
             ]);
         }
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LikesController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\ViewAddPhotoController;
 use App\Http\Controllers\UserFormController;
@@ -38,3 +39,4 @@ Route::delete('delete', [PhotosController::class, 'deleteImage'])->name('delete'
 Route::get('viewphoto/{id}', [PhotosController::class, 'viewSinglePhoto'])->middleware('auth');
 Route::get('addphoto', ViewAddPhotocontroller::class)->middleware('auth');
 Route::post('addcomment', [CommentsController::class, 'addComment'])->name('addComment');
+Route::patch('like/{request}', LikesController::class)->middleware('auth');

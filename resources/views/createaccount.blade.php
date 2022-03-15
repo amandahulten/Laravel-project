@@ -1,5 +1,6 @@
-@include('header')
-@include('errors')
+@include ('header')
+@include('validations')
+
 <div class=" d-flex align-items-center flex-column">
     <div class="mb-auto p-2">
         <h1>Create Account</h1>

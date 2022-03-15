@@ -1,6 +1,5 @@
 @include ('header')
-@include('errors')
-
+@include('validations')
 <div class=" d-flex align-items-center flex-column">
     <div class="mb-auto p-2">
         <h1>Log in</h1>

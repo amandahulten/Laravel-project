@@ -115,3 +115,12 @@ nav i{
     outline-width: 0;
 }
 
+.noButtonStyling {
+	background: none;
+	color: inherit;
+	border: none;
+	cursor: pointer;
+    width: 26px;
+    height: 26px;
+}
+

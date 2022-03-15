@@ -1,5 +1,5 @@
 @include ('header')
-@include('errors')
+@include('validations')
 
 <form action="/photos" method="POST" enctype="multipart/form-data">
     @csrf

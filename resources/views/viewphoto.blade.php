@@ -1,5 +1,6 @@
 @include ('header')
-@include('errors')
+@include('validations')
+
 
 <section class="feed">
     <div class="header">

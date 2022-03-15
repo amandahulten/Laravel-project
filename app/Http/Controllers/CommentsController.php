@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
-
     public function addComment(Request $request)
     {
         $this->validate($request, [
@@ -23,6 +22,6 @@ class CommentsController extends Controller
         $database->photo_id = $request->input('photo_id');
         $database->save();
 
-        return back();
+        return back()->with('success', 'Comment added successfully.');
     }
 }
