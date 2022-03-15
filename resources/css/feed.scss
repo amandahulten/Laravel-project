@@ -1,6 +1,6 @@
 @import '~bootstrap-icons/font/bootstrap-icons';
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;600;700&display=swap');
 
 // Style
 @mixin space($margin: 0, $padding: 0, $border: 0){
@@ -12,6 +12,7 @@
 *{
   box-sizing: border-box;
   transition: all .15s ease-in-out;
+
 }
 
 a{

@@ -26,7 +26,7 @@ class CreateAccountTest extends TestCase
         $this->followingRedirects()->post('/createuser', [
             'name' => 'emma',
             'email' => 'hejhejhej@hejmail.nu',
-            'password' => 'test',
+            'password' => 'test1234567',
         ])->assertOk()->assertSeeText('Email');
 
         $this->assertDatabaseHas('users', [

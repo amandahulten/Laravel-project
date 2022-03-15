@@ -9,16 +9,10 @@ use App\Models\Comment;
 
 class FeedController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function __invoke()
     {
         $user = Auth::user();
-        $comments = Comment::all();
+        $comments = Comment::commentsAndUsers();
         $allPhotos = Photo::photoFeedWithLikes();
 
         return view('/feed', compact('allPhotos', 'comments'), [

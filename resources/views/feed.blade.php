@@ -1,6 +1,5 @@
 @include ('header')
 @include('validations')
-
 @foreach($allPhotos as $photo)
 
 <section class="feed">
@@ -68,8 +67,11 @@
 
         @if($photo->photo_id == $comment->photo_id)
 
-        <p>{{ $comment->comment }}</p>
-        <p>{{ $comment->created_at }}</p>
+        <div style="margin-left: 1%">
+            <span style="font-weight:700">{{ $comment->name }}:</span> {{ $comment->comment }}
+
+            <div style="color: grey"><small>{{ $comment->created_at }}</small></div>
+        </div>
 
         @endif
         @endforeach
